@@ -20,17 +20,39 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
-apply {
-	plugin("maven-publish")
-}
-
-publishing {
-	publications {
-		create<MavenPublication>("maven") {
-			groupId = project.properties["group"].toString()
-			artifactId = project.name
-			version = project.properties["version"].toString()
-			from(components["kotlin"])
+subprojects {
+	apply {
+		plugin("maven-publish")
+	}
+	publishing {
+		publications {
+			create<MavenPublication>("maven") {
+				pom {
+					licenses {
+						license {
+							name.set("The Apache License, Version 2.0")
+							url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+						}
+					}
+					developers {
+						developer {
+							id.set("sovannarithcheav")
+							name.set("Sovannarith Cheav")
+							email.set("cheavsovannarith@gmail.com")
+						}
+					}
+				}
+				groupId = project.properties["group"].toString()
+				artifactId = project.name
+				version = project.properties["version"].toString()
+				from(components["java"])
+			}
+		}
+		repositories {
+			maven {
+				name = "GitHubPackages"
+				url = uri("https://maven.pkg.github.com/sovannarithcheav/jpa-sort-alias")
+			}
 		}
 	}
 }
