@@ -15,3 +15,6 @@ jobs:
           java-version: '11'
       - name: Build jar
         run: ./gradlew clean build publish
+        env:
+          GIT_PUBLISH_USER: ${{ secrets.GIT_PUBLISH_USER  }}
+          GIT_PUBLISH_PASSWORD: ${{ secrets.GIT_PUBLISH_PASSWORD }}
