@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort
 object Converter {
     fun <T> Class<T>.convert(pageable: Pageable): Pageable {
         var newPageable = pageable
-        this.javaClass.declaredFields.map {
+        this.declaredFields.map {
             it.name to it.annotations.filterIsInstance<SortAlias>().firstOrNull()
         }.filterNot { it.second == null }.firstOrNull()
             ?.let {
