@@ -62,7 +62,6 @@ publishing {
                 password = System.getenv("GIT_PUBLISH_PASSWORD")
             }
         }
-        mavenCentral()
     }
 }
 
