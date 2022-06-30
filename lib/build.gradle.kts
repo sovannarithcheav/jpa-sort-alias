@@ -50,8 +50,20 @@ subprojects {
 		}
 		repositories {
 			maven {
+				name = "OSSRH"
+				url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+				credentials {
+					username = System.getenv("MAVEN_USERNAME")
+					password = System.getenv("MAVEN_PASSWORD")
+				}
+			}
+			maven {
 				name = "GitHubPackages"
 				url = uri("https://maven.pkg.github.com/sovannarithcheav/jpa-sort-alias")
+				credentials {
+					username = System.getenv("GITHUB_ACTOR")
+					password = System.getenv("GITHUB_TOKEN")
+				}
 			}
 		}
 	}
